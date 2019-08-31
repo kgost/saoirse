@@ -17,7 +17,8 @@ sequelize db:migrate
 # sync the database to all the relations are set
 node sync.js
 # install the back end dependencies
-npm install```
+npm install
+```
 create the file `back/.env` and fill the following environment variables
 ```
 JWTKEY=""
@@ -26,9 +27,11 @@ PORT=8080
 ```
 you can pick any JWTKEY you want, to generate a vapid keypair:
 
-```npm i -g web-push
+```
+npm i -g web-push
 
-web-push generate-vapid-keys --json```
+web-push generate-vapid-keys --json
+```
 
 use this for the vapid keypair
 now just run the express server
@@ -54,8 +57,10 @@ same as in the previous enviroment, you must setup your vapid keys and other env
 You don't need to change any database settings as docker has everything setup already
 now just run
 
-```docker-compose build
-docker-compose up```
+```
+docker-compose build
+docker-compose up
+```
 
 and the app will launch and be available at localhost:3000
 any changes made will require rebuild the docker-compose, this will be fixed in the future to update dynamically
@@ -64,7 +69,9 @@ any changes made will require rebuild the docker-compose, this will be fixed in 
 you must setup the Dockerfile and vapid keys same as before
 to use with kubernetes, you must already have your kubernetes cluster setup, then use:
 
-```kubectl apply -f saoirse-back.yml
-`kubectl apply -f saoirse-front.yml```
+```
+kubectl apply -f saoirse-back.yml
+kubectl apply -f saoirse-front.yml
+```
 
 the app will launch at `10.96.1.2`, you can setup an alias in your hosts file if you want
