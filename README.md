@@ -29,7 +29,6 @@ you can pick any JWTKEY you want, to generate a vapid keypair:
 
 ```
 npm i -g web-push
-
 web-push generate-vapid-keys --json
 ```
 
