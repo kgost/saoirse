@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  db:
+    image: mariadb
+    volumes:
+      - saoirse-db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "toor"
+      MYSQL_DATABASE: "saoirse_development"
+      MYSQL_USER: "saoirse"
+      MYSQL_PASSWORD: "dashword"
+
+  saoirse-back:
+    build: 
+      context: ./back/
+    ports:
+      - '8080:8080'
+    depends_on:
+      - "db"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+
+  saoirse-front:
+    build: 
+      context: ./front/
+    volumes:
+      - "./front/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+    ports:
+      - '3000:8080'
+    depends_on:
+      - "saoirse-back"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+volumes:
+  saoirse-db:

@@ -1,0 +1,16 @@
+#ignore .env
+.env
+
+#ignore node modules
+*/node_modules/*
+Procfile
+package-lock.json
+
+#ignore angular stuff
+dist/*
+e2e/*
+
+#ignore vim swp files ( big boys use vim )
+*.swp
+
+front/public/img/emojis/

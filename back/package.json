@@ -1,0 +1,32 @@
+{
+  "name": "doodle-chat-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-sanitizer": "^1.0.5",
+    "heroku-ssl-redirect": "0.0.4",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.5.0",
+    "mysql2": "^1.6.5",
+    "node-cron": "^2.0.3",
+    "node-env-file": "^0.1.8",
+    "node-forge": "^0.8.5",
+    "sequelize": "^4.42.1",
+    "socket.io": "^2.2.0",
+    "web-push": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1"
+  }
+}
