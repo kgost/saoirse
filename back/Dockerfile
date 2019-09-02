@@ -15,8 +15,12 @@ RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
 
+RUN npm -g config set user root
+
+RUN npm i -g nodemon
+
 ENV JWTKEY="there is a jeff out there"
 ENV PRIVATE_VAPID_KEY=""
 ENV PORT=8080
 
-CMD [ "node", "app.js" ]
+CMD [ "nodemon", "app.js" ]

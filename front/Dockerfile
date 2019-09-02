@@ -1,5 +1,9 @@
 FROM node:12 AS build-env
 
+RUN apt-get update
+RUN apt-get install -y nginx
+RUN apt-get install -y inotify-tools
+
 RUN npm -g config set user root
 
 RUN npm i -g grunt-cli
@@ -15,13 +19,10 @@ COPY package*.json ./
 COPY . .
 
 RUN npm install
-RUN npm run build
 
-WORKDIR /usr/src/app/dist
 # If you are building your code for production
 # RUN npm ci --only=production
 
-FROM nginx:stable-alpine
-WORKDIR /usr/share/nginx/html
-COPY --from=build-env /usr/src/app/dist /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+CMD ["/bin/bash", "./build_watch.sh"]

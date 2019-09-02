@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  db:
+  saoirse-db:
     image: mariadb
     volumes:
       - saoirse-db:/var/lib/mysql
@@ -14,10 +14,17 @@ services:
   saoirse-back:
     build: 
       context: ./back/
+    volumes:
+      - "./back/controllers:/usr/src/app/controllers"
+      - "./back/functions:/usr/src/app/functions"
+      - "./back/models:/usr/src/app/models"
+      - "./back/config:/usr/src/app/config"
+      - "./back/migrations:/usr/src/app/migrations"
+      - "./back/routes:/usr/src/app/routes"
     ports:
       - '8080:8080'
     depends_on:
-      - "db"
+      - "saoirse-db"
     deploy:
       restart_policy:
         condition: on-failure
@@ -30,6 +37,7 @@ services:
       context: ./front/
     volumes:
       - "./front/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./front/src:/usr/src/app/src"
     ports:
       - '3000:8080'
     depends_on:

@@ -3,7 +3,7 @@
     "username": "saoirse",
     "password": "dashword",
     "database": "saoirse_development",
-    "host": "mariadb",
+    "host": "saoirse-db",
     "dialect": "mysql"
   },
   "test": {
