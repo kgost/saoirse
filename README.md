@@ -51,18 +51,22 @@ To get push notifications and service workers running you will need to run
 you then need to serve the dist folder as a pwa, there are many ways to do this, look into [https://www.npmjs.com/package/http-server-pwa](https://www.npmjs.com/package/http-server-pwa)
 
 ## Using Docker
-You must have docker and docker-composed installed and working
-same as in the previous enviroment, you must setup your vapid keys and other enviroment variables, located in `back/Dockerfile`.
-You don't need to change any database settings as docker has everything setup already
-now just run
+You must have docker and docker-compose installed and working.
+
+Same as in the previous enviroment, you must setup your vapid keys and other enviroment variables, located in `back/Dockerfile`.
+
+You don't need to change any database settings as docker has everything setup already.
+
+Now just run.
 
 ```
 docker-compose build
 docker-compose up
 ```
 
-and the app will launch and be available at localhost:3000
-any changes made will require rebuild the docker-compose, this will be fixed in the future to update dynamically
+And the app will launch and be available at localhost:3000.
+
+Any changes made to `front/src` will automatically rebuild the front end and any changes to config, functions, models, routes, controllers and migrations will automatically update on the backend. When installing new packages for either or changing other settings you must rebuild and reup.
 
 ## Using Kubernetes
 you must setup the Dockerfile and vapid keys same as before
