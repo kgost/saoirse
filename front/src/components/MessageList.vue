@@ -15,7 +15,7 @@
           <img v-if="message.isImage" :src="message.message.substr( 4 )" :class="{ 'too-wide': tooWide( message.message ), 'too-tall': tooTall( message.message ) }">
           <video controls v-else-if="message.isVideo" :src="message.message.substr( 4 )" :class="{ 'too-wide': tooWide( message.message ), 'too-tall': tooTall( message.message ) }"></video>
         </div>
-        <div v-else v-html="emojifyMessage( $sanitize( message.message ) )" class="message"></div><em v-if="message.createdAt !== message.updatedAt">(edited)</em>
+        <div v-else v-html="linkifyMessage( emojifyMessage( $sanitize( message.message ) ) )" class="message"></div><em v-if="message.createdAt !== message.updatedAt">(edited)</em>
       </div>
 
       <div class="reactions-container">
@@ -41,6 +41,7 @@ import { Component, Model, Prop, Watch, Vue } from 'vue-property-decorator';
 import EditReaction from '@/components/EditReaction.vue';
 
 import twemoji from 'twemoji';
+import linkifyHtml from 'linkifyjs/html';
 
 import store from '@/store.ts';
 import router from '@/router.ts';
@@ -207,6 +208,24 @@ export default class MessageList extends Vue {
     return twemoji.parse( message, ( icon, options, variant ) => {
       return `/img/emojis/${ icon }.png`;
     } );
+  }
+
+  private linkifyMessage( message: string ) {
+    if ( !message || message === '' ) {
+      return '';
+    }
+
+    const matches = message.match( /https?:\/\/[^\s]+\.[^\s][^\s]+/gm );
+
+    if ( matches ) {
+      for ( let i = 0; i < matches.length; i++ ) {
+        const linkified = linkifyHtml( matches[i] );
+        message = message.substr( 0, message.indexOf( matches[i] ) ) +
+          linkified + message.substr( message.indexOf( matches[i] ) + matches[i].length );
+      }
+    }
+
+    return message;
   }
 
   private getUsername( id: number ) {
