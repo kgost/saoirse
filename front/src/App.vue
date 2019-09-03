@@ -18,7 +18,7 @@
         <div class="line"></div>
       </div>
 
-      <h1>{{ name }}</h1>
+      <h2>{{ name }}</h2>
     </div>
 
     <SideBar v-show="signedIn" v-model="showSideBar"></SideBar>
@@ -184,8 +184,10 @@ a {
         }
       }
 
-      h1 {
+      h2 {
         text-align: center;
+        margin: 0;
+        margin-top: 20px;
       }
     }
 
