@@ -471,3 +471,13 @@ export default class MessageList extends Vue {
   height: 24px;
 }
 </style>
+<style lang="scss">
+.linkified {
+  &:link {
+    color: #0000EE;
+  }
+  &:visited {
+    color: #551A8B;
+  }
+}
+</style>

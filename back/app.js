@@ -63,7 +63,7 @@ webpush.setVapidDetails(
   vapidKeys.privateKey
 )
 
-cron.schedule( '*/3 * * * * *', async () => {
+cron.schedule( '* * * * *', async () => {
   const conversationNotifications = await ConversationNotification.findAll({
     where: { sent: false },
     include: [
