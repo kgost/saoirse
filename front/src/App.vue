@@ -18,7 +18,8 @@
         <div class="line"></div>
       </div>
 
-      <h2>{{ name }}</h2>
+      <h2 v-if="name">{{ name }}</h2>
+      <h2 v-if="!name">Saoirse</h2>
     </div>
 
     <SideBar v-show="signedIn" v-model="showSideBar"></SideBar>
